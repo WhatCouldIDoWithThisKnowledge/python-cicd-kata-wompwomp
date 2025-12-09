@@ -32,4 +32,4 @@ jobs:
           IMAGE_URL: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/python-kata-wompwomp:latest
         run: |
           ENCODED_IMAGE_URL=$(echo -n "$IMAGE_URL" | jq -s -R -r @uri)
-          curl "${DEPLOY_WEBHOOK_URL}&imgURL=${IMAGE_URL}"
+          curl "${RENDER_WEBHOOK}&imgURL=${IMAGE_URL}"
