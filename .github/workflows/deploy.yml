@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   publish:
@@ -30,4 +31,5 @@ jobs:
           RENDER_WEBHOOK: ${{ secrets.DEPLOY_WEBHOOK_URL }}
           IMAGE_URL: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/python-kata-wompwomp:latest
         run: |
-          curl "${DEPLOY_WEBHOOK_URL}&imgURL=docker.io%2Fwhatisthisboat%2Fpython-kata-wompwomp%3Alatest"
+          ENCODED_IMAGE_URL=$(echo -n "$IMAGE_URL" | jq -s -R -r @uri)
+          curl "${RENDER_WEBHOOK}&imgURL=${IMAGE_URL}"
