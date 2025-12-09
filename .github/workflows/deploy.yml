@@ -27,8 +27,7 @@ jobs:
 
       - name: Deploy to Render
         env:
-          RENDER_WEBHOOK: ${{ secrets.RENDER_DEPLOY_WEBHOOK }}
+          RENDER_WEBHOOK: ${{ secrets.DEPLOY_WEBHOOK_URL }}
           IMAGE_URL: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/python-kata-wompwomp:latest
         run: |
-          ENCODED_IMAGE_URL=$(echo -n "$IMAGE_URL" | jq -s -R -r @uri)
-          curl "${RENDER_WEBHOOK}&imgURL=${ENCODED_IMAGE_URL}"
+          curl "${DEPLOY_WEBHOOK_URL}&imgURL=docker.io%2Fwhatisthisboat%2Fpython-kata-wompwomp%3Alatest"
