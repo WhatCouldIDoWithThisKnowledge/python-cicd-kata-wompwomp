@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   docker-build:
@@ -13,4 +14,3 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t python-kata-wompwomp:latest .
-
