@@ -19,4 +19,5 @@ jobs:
         run: uv sync --group dev
 
       - name: Run ruff (lint)
-        run: uv run ruff check .
+        id: check
+        run: uv run ruff check --fix .
